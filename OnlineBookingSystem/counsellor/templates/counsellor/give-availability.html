@@ -1,0 +1,57 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static '/js/jquery-ui.min.js'%}"></script>
+<link rel="stylesheet" type="te xt/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?00000">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-form">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row title-head">
+                    <div class="col-md-12">
+                        <div class="title-line">
+                            <span class="page-name">Update your availability for next week</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <form method="POST" class="post-form" action="{%url 'counsellor:my-availability'%}">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Select date</label>
+                                    </div>
+                                    <div class="input-wrapper">
+										<input type="date"   class="form-control input-text" id="availableDate" name="availableDate"
+											   value="2020-06-14"
+											   min="2020-06-14" max="2020-07-19">
+                                    </div>
+                                </div>
+                               	<div class="col-md-8">
+								</div>
+                                <div class="col-md-6">
+									 <a href="{%url 'counsellor:my-availability'%}">
+                                          <button class="btn btn-success btn-lg pull-right" title="Cancel" type="button">GO BACK</button>
+									 </a>
+                                    <button class="btn btn-primary btn-lg pull-right" title="Submit" type="submit">SUBMIT</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        </div>
+</div>
+{%endblock%}

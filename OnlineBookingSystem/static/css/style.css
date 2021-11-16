@@ -1,0 +1,31 @@
+{%load static%}
+body {
+  overflow-x:hidden;
+}
+#profile-img {
+    height:180px;
+}
+.title{
+    color:#007bffd9;
+}
+.h-80 {
+    height: 80% !important;
+}
+.wrapper{
+    min-height:100%;
+}
+
+.index-block{
+    padding-top:30px;
+}
+.button-block{
+    padding-top:10px;
+    padding-left:150px;
+}
+.footer{
+    background-color: #f8f9fa!important;
+    position: relative;
+    height: 50px;
+    margin-top: -50px;
+    clear: both;
+}

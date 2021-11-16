@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script type="text/javascript" src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script type="text/javascript"  src="{% static '/js/jquery-ui.min.js'%}"></script>-->
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?00000">
+{%endblock%}
+{%block content%}
+
+<div id="page-content-wrapper-table">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <a href="{%url 'client:client-login'%}">
+                    <button class="btn btn-success btn-lg" title="back" type="button">GO BACK TO DASHBOARD</button>
+                </a>
+            </div>
+            <div class="row title-head">
+                <div class="col-md-12">
+                    <div class="title-line">
+                        <span class="page-name">Please choose the date and time to reshedule your appointment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <form method="POST">{%csrf_token%}
+                    <table class="table table-style" id="clientTable">
+                        <thead>
+                        <tr class="row-bg">
+                            <th>SN.</th>
+                            <th>Counsellor Name </th>
+                            <th>Booking Date </th>
+                            <th>Booking Time </th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                        <tr>
+                            <td>1.</td>
+                            <td>{{appointment.counsellor.name}}</td>
+                            <td>
+									<select name="booking_date" class="form-control input-text">
+									{% for day in availability %}
+									    <option value="{{ day.availableDate }}">{{day.availableDate}}</option>
+									{% endfor %}
+									</select>
+
+							</td>
+							<td>
+								<select name="booking_time" class="form-control input-text" label="Booking Date">
+									{% for shift in shifts %}
+									    <option value="{{shift.workhoursFrom}} To {{shift.workhoursTo}}">{{shift.workhoursFrom}}-{{shift.workhoursTo}}</option>
+									{% endfor %}
+									</select>
+							</td>
+
+							<td>
+								<input type="submit" class="btn btn-small btn-success" value="Submit"/>
+							</td>
+                        </tr>
+                        
+                        </tbody>
+                    </table>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

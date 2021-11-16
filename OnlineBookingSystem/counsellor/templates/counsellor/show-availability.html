@@ -1,0 +1,95 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?0000000000">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-form">
+    <div class="page-content">
+
+        <div class="container-fluid">
+            <div class="row">
+                <a href="{%url 'client:client-login'%}">
+                    <button class="btn btn-success btn-lg" title="back" type="button">GO BACK TO DASHBOARD</button>
+                </a>
+            </div>
+            <div class="row title-head">
+                <div class="col-md-3">
+                    <div class="title-line">
+                        <span style="font-weight:bold;font-size:18px;">Click on the available dates for {{counsellorName}} </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table table-style" id="availabilityTable">
+
+                    <tbody>
+                    {%if availabilityList%}
+                    {% for availability in availabilityList %}
+                    <tr>
+                        <td>
+                            <a class="list-group-item" id="list-{{forloop.counter}}-list"
+                               data-toggle="list"
+                               href="#list-{{forloop.counter}}" role="" aria-controls="{{forloop.counter}}">{{availability.availableDate}}</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                    {%endif%}
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="col-md-7">
+
+                <div class="tab-content" id="nav-tabContent">
+
+                    {% for availability in availabilityList%}
+                    <div class="tab-pane fade show " id="list-{{forloop.counter}}" role="tabpanel"
+                         aria-labelledby="list-{{forloop.counter}}-list">
+
+                        <table class="table table-style" id="counsellorTable">
+                            <thead>
+                            <tr class="row-bg">
+                                <th>SN.</th>
+                                <th>Availability</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {%for shift in shifts%}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>
+                                    <a href="{% url 'client:create-appointment'%}?counsellorID={{counsellor_id}}&workhoursFrom={{shift.workhoursFrom}}&workhoursTo={{shift.workhoursTo}}&bookingDate={{availability.availableDate}}">{{shift.workhoursFrom}}
+                                        To {{shift.workhoursTo}}</a></td>
+
+                            </tr>
+                            {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endfor%}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <a href="{%url 'counsellor:counsellor-details-with-availability'%}">
+                <button class="btn btn-primary btn-lg" title="" type="button">Back</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock%}

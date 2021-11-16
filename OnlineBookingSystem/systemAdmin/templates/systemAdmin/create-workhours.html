@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static '/js/jquery-ui.min.js'%}"></script>
+<link rel="stylesheet" type="te xt/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?00000">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-form">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row title-head">
+                    <div class="col-md-12">
+                        <div class="title-line">
+                            <span class="page-name">Create a new shift</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <form method="POST">{%csrf_token%}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{form.as_p}}
+                                </div>
+
+                            </div>
+							<div class="row">
+								 <div class="col-md-6">
+                                    <button class="btn btn-primary btn-lg" title="Submit" type="submit">SUBMIT</button>
+									 <a href="{% url 'systemAdmin:list-workhours'%}">
+                                          <button class="btn btn-success btn-lg" title="Cancel" type="submit">CANCEL</button>
+                                    </a>
+                                </div>
+							</div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+        </div>
+</div>
+{%endblock%}

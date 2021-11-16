@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?0000000000">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-form">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <a href="{%url 'client:client-login'%}">
+                    <button class="btn btn-success btn-lg" title="back" type="button">GO BACK TO DASHBOARD</button>
+                </a>
+            </div>
+            <div class="row title-head">
+                <div class="col-md-12">
+                    <div class="title-line">
+
+                        <span class="page-name-heading">Counsellors Availability List</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {%if counsellor_list%}
+        {%for counsellor in counsellor_list%}
+        <div class="row" style="padding-bottom:40px;">
+            <div class="col-md-2" style="padding-left:130px">
+                <img src="{% static '/image/profile.png' %}" class="img-spacings"
+                     alt="Apps">
+            </div>
+            <div class="col-md-2">
+                <span style="color:#428bca;">
+                    <b>{{counsellor.name}}</b><br/>
+                    <b>Contact: {{counsellor.phoneNumber}}</b><br/>
+
+
+                </span>
+            </div>
+            <div class="col-md-4">
+                <span style="color:#428bca;">
+                     <b>Email:{{counsellor.email}}</b><br/>
+                    <b>Education:{{counsellor.education}}</b><br/>
+                </span>
+            </div>
+            <div class="col-md-4">
+                <a href="/counsellor/show-availability/{{counsellor.id}}">
+                    <button class="btn btn-primary btn-lg" title="Submit" type="button">VIEW AVAILABILITY</button>
+                </a>
+            </div>
+        </div>
+
+
+        {%endfor%}
+        {%endif%}
+
+    </div>
+</div>
+{% endblock%}

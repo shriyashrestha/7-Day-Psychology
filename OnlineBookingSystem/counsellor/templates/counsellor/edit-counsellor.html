@@ -1,0 +1,105 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static '/js/jquery-ui.min.js'%}"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}?00000">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-form">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row title-head">
+                    <div class="col-md-12">
+                        <div class="title-line">
+                            <span class="page-name">Edit Profile: {{counsellor.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <form method="POST" class="post-form" action="/counsellor/update/{{counsellor.id}}">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="name" name="name"
+                                               value="{{counsellor.name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Username</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="username" name="username"  value="{{counsellor.username}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="password" class="form-control input-text" id="password" name="password" value="{{counsellor.password}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="address" name="address" value="{{counsellor.address}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label>Phone Number</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="phoneNumber" name="phoneNumber" value="{{counsellor.phoneNumber}}">
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div>
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="email" name="email" value="{{counsellor.email}}">
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div>
+                                        <label>Education</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input type="text" class="form-control input-text" id="education" name="education" value="{{counsellor.education}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary btn-lg" title="Submit" type="submit">SUBMIT</button>
+                                    <a href="/counsellor/all-counsellor-list/">
+                                          <button class="btn btn-success btn-lg" title="Cancel" type="submit">CANCEL</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+        </div>
+        </div>
+</div>
+{%endblock%}

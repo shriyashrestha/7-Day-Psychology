@@ -1,0 +1,103 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script type="text/javascript" src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script type="text/javascript"  src="{% static '/js/jquery-ui.min.js'%}"></script>-->
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-table">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row pull-right">
+                <a href="{%url 'systemAdmin:admin-logIn'%}">
+                    <button class="btn btn-success btn-lg" title="back" type="button">GO BACK TO DASHBOARD</button>
+                </a>
+              </div>
+            <div class="row title-head">
+                <div class="col-md-12">
+                    <div class="title-line">
+                        <span class="page-name">Counsellor List</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="{%url 'systemAdmin:create-counsellor'%}" class="none-decoration">
+                        <button class="btn btn-small btn-primary btn-add" title="Add new">ADD COUNSELLOR</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-style" id="counsellorTable">
+                        <thead>
+                        <tr class="row-bg">
+                            <th>SN.</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Education</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%if all_counsellors%}
+                        {%for counsellor in all_counsellors%}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{counsellor.name}}</td>
+                            <td>{{counsellor.address}}</td>
+                            <td>{{counsellor.phoneNumber}}</td>
+                            <td>{{counsellor.email}}</td>
+                            <td>{{counsellor.education}}</td>
+                            <td>
+                                <ul class="btn-list-inline">
+                                    <li>
+                                        <a href="/counsellor/edit/{{counsellor.id}}">
+                                            <input type="submit" class="btn btn-small btn-success" value="EDIT"/>
+                                        </a>
+                                    </li>
+                                    <li>
+                                         <a href="/counsellor/delete/{{counsellor.id}}">
+                                            <button type="button" class="btn btn-small btn-danger delete">
+                                                DELETE
+                                            </button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                        {%endif%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+{%block footer%}
+<script>
+    $(".delete").click(function(){
+            var ans = confirm('Are you sure you want to delete this counsellor?')
+            if(ans)
+                return true
+            else
+                return false
+     });
+
+</script>
+{%endblock%}
+

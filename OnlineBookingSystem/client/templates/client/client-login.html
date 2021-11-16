@@ -1,0 +1,146 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block style%}
+<script src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static '/js/jquery-ui.min.js'%}"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}">
+{%endblock%}
+
+
+{%block content%}
+
+{% if username is None%}
+<h2 style="color: blue; text-align: center; ">Client Login Form</h2>
+<div class="row align-items-center h-100">
+    <div class="col-3 mx-auto">
+        <p style="color: red">{{error}}</p>
+        <div class="text-center">
+            <img id="profile-img" class="rounded-circle profile-img-card" src="{% static '/image/avatar.png'%}"
+                 alt="animated user">
+            <p id="profile-name" class="profile-name-card"></p>
+            <form role="form" method="post" class="form-signin">{%csrf_token%}
+                <input type="text" name="username" id="username" class="form-control form-group" placeholder="Username"
+                       required autofocus>
+                <input type="password" name="password" id="inputPassword" class="form-control form-group"
+                       placeholder="password" required autofocus>
+                <button class="btn btn-lg btn-success btn-block btn-signin" type="submit">Sign In</button>
+            </form><!-- /form -->
+            <a href="{%url 'client:client-form'%}">
+                <button class="btn btn-lg btn-primary btn-block btn-signup">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <b style="font-size:20px;">Welcome, {{name}}</b>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="background-block">
+                        <a href="{%url 'client:my-appointment'%}">
+                            <h5 class="head-style">MY APPOINTMENTS</h5>
+
+                            <div class="text-right image-style">
+                                <img src="{% static '/image/horizontal-or-vertical-paper-position-interface-button.png' %}"
+                                     class="img-spacings" calt="Apps">
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="background-block">
+                        <a href="{%url 'client:my-profile'%}">
+                            <h5 class="head-style">MY PROFILE</h5>
+                            <div class="text-center image-style">
+                                <img src="{% static '/image/profile.png' %}" class="img-spacings"
+                                     calt="Apps">
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+
+                    <div class="background-block">
+                        <a href="{%url 'client:my-notifications'%}">
+                            <h5 class="head-style">NOTIFICATIONS </h5>
+
+                            <div class="text-center image-style">
+                                <img src="{% static '/image/notification-bell.png' %}" class="img-spacings"
+                                     calt="Apps">
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="background-block">
+                        <a href="{%url 'client:my-counsellors'%}">
+                            <h5 class="head-style">MY COUNSELLORS</h5>
+
+                            <div class="text-center image-style">
+
+                                <img src="{% static '/image/boy-with-tie-reading-a-speech.png' %}"
+                                     class="img-spacings"
+                                     calt="Apps">
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <a href="{%url 'counsellor:counsellor-details-with-availability'%}">
+                        <div class="background-block">
+                            <h5 class="head-style">MAKE A BOOKING</h5>
+                            <div class="text-right image-style">
+                                <img src="{% static '/image/apps.png' %}" class="img-spacings" calt="Apps">
+                            </div>
+                        </div>
+                    </a>
+                    <div class="row" style="margin-top: 10px;">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="{%url 'client:client-login'%}?action=logout" class="head-style">
+                        <div class="background-block">
+                            <h5 class="head-style">
+                                LOGOUT
+                            </h5>
+
+                            <div class="text-right image-style">
+                                <img src="{% static '/image/red-logout.png' %}"
+                                     class="img-spacings" alt="Apps">
+
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{%endblock%}

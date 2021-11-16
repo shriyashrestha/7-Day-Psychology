@@ -1,0 +1,94 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block header%}
+{%endblock%}
+{%block style%}
+<script type="text/javascript" src="{% static '/js/jquery.dataTables.min.js'%}"></script>
+<script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script type="text/javascript"  src="{% static '/js/jquery-ui.min.js'%}"></script>-->
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery.dataTables.min.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/jquery-ui.min.css'%}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style-counsellor.css'%}">
+{%endblock%}
+{%block content%}
+<div id="page-content-wrapper-table">
+    <div class="page-content">
+        {%if messages%}
+        {%for message in messages%}
+        <h4 style="color: green">{{message}}</h4>
+        {%endfor%}
+        {%endif%}
+        <div class="container-fluid">
+            <div class="row pull-right">
+                <a href="{%url 'client:client-login'%}">
+                    <button class="btn btn-success btn-lg" title="back" type="button">GO BACK TO DASHBOARD</button>
+                </a>
+              </div>
+			<div class="row title-head">
+                <div class="col-md-12">
+                    <div class="title-line">
+                        <span class="page-name">My Appointments</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="{%url 'counsellor:counsellor-details-with-availability'%}" class="none-decoration">
+                            <button class="btn btn-small btn-primary btn-add" title="book">  MAKE A NEW BOOKING</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-style" id="counsellorTable">
+                        <thead>
+                        <tr class="row-bg">
+                            <th>SN.</th>
+                            <th>Counsellor Name </th>
+                            <th>Booking Date </th>
+                            <th>Booking Time </th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for appointment in appointments%}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{appointment.counsellor.name}}</td>
+                            <td>{{appointment.appointmentDate}}</td>
+                            <td>{{appointment.appointmentTime}}</td>
+                            
+                            <td>
+                                <ul class="btn-list-inline">
+                                    <li>
+                                        <a href="{%url 'client:reschedule-appointment' pk=appointment.id%}">
+                                            <input type="submit" class="btn btn-small btn-success" value="Reschedule appointment"/>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                         <a href="{%url 'client:delete-appointment' pk=appointment.id%}">
+                                            <button type="button" class="btn btn-small btn-danger delete">
+                                                cancel appointment
+                                            </button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+
+

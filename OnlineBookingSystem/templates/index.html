@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+
+{%block header%}
+<div class="col-md-12 button-block">
+
+    <h6>Book an appointment
+        <a href="{%url 'client:client-login'%}">
+            <button type="button" class="btn btn-primary">My Account</button>
+        </a>
+    </h6>
+    <h6>Login as a counsellor
+        <a href="{%url 'counsellor:counsellor-login'%}">
+        <button type="button" class="btn btn-primary">Login/Signup</button>
+    </a></h6>
+
+    <h6>
+        <a href="{%url 'systemAdmin:admin-logIn'%}">
+        <button type="button" class="btn btn-primary">Login</button>
+    </a> as an admin</h6>
+</div>
+{%endblock%}
+
+{%block content%}
+<div class="col-md-12">
+    <div class="col-md-12 index-block">
+        <h3> 7-Day Psychology</h3>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="col-md-12">
+        <p>Established in 2010 and located in the inner west, the 7 Day Psychology Centre is a network of
+            experienced
+            clinical psychologists providing total help for the individual, the partner and the parent.
+        <hr style="display: none">
+        Our clinical psychologists have expertise in adult, adolescent and child disorders. They are all trained in
+        treating depression and anxiety disorders and specialise in a variety of other areas.
+
+        All our clinical psychologists are registered with the Psychology Board of Australia and endorsed for
+        clinical psychology as an approved area of practice.
+        </p>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="row col-md-12">
+        <div class="col-md-4">
+            <table>
+                <th>Days</th>
+                <th>Opening Hours</th>
+                </tr>
+                <tr>
+                    <td>Monday to Friday</td>
+                    <td>10 am to 5 pm</td>
+                </tr>
+                <tr>
+                    <td>Weekends</td>
+                    <td> Closed</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-8 d-flex justify-content-center">
+            <img class="img-responsive center-block" src="./static/image/centre.jpg" style="height:80%; width:80%;"
+                 alt="logo">
+        </div>
+    </div>
+</div>
+
+{%endblock%}

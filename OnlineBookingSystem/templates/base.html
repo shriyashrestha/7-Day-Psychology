@@ -1,0 +1,67 @@
+<DOCTYPE! html>
+<html>
+<head>
+    {% load static%}
+    <title>7-day Psychology online booking system</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css'%}">
+    {%block style%}
+    {%endblock%}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}?0">
+    <script type="text/javascript" src="{% static '/js/jquery-3.5.0.min.js'%}"></script>
+    <script type="text/javascript" src="{% static '/js/bootstrap.min.js'%}"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-sm-2" style="padding-left: 5vw">
+                <a href="{%url 'home'%}"><img height="150vw" src="{% static '/image/logo.png'%}" alt="logo"></a>
+            </div>
+            <div class="col-sm-6" style="padding-top:30px;">
+                <h2 class="title">7 Day Psychology</h2>
+                <h6 >Mental Health is our Priority</h6>
+            </div>
+            <div class="col-sm-4">
+                {%block header%}
+                {%endblock%}
+            </div>
+        </div>
+
+        <div class="row">
+            {% include 'navbar.html'%}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {%block content%}
+                replace the contents
+                {%endblock%}
+            </div>
+        </div>
+
+
+
+</div>
+    <footer class="footer" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row col-md-12">
+                <div class="col-md-6">
+                    <h5>Phone Number: 044985756</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="float-right">Email: 7day-psychology@hotmail.com</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 ">
+            <div class="col-md-12 text-center">
+                &copy 2019 7 Day Psychology centre/ All rights are reserved
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+{%block footer%}
+{%endblock%}
+</html>
